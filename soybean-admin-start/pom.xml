@@ -51,7 +51,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.soybean.start.SoybeanAdminStartApplication</mainClass>
+                    <mainClass>com.soybean.start.Application</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>
