@@ -11,6 +11,8 @@
     <modules>
         <module>soybean-admin-common</module>
         <module>soybean-admin-start</module>
+        <module>soybean-admin-core</module>
+        <module>soybean-admin-portal</module>
     </modules>
     <properties>
         <java.version>17</java.version>
@@ -18,7 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.6.13</spring-boot.version>
         <commons-collections4.version>4.4</commons-collections4.version>
-        <fastjson2.version>2.0.24</fastjson2.version>
+        <fastjson.version>2.0.9</fastjson.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -30,8 +32,8 @@
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>fastjson2</artifactId>
-                <version>${fastjson2.version}</version>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <dependency>
@@ -58,6 +60,31 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.22</version>
             </dependency>
+            <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot-starter</artifactId>
+                <version>1.38.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.soybean</groupId>
+                <artifactId>soybean-admin-portal</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.soybean</groupId>
+                <artifactId>soybean-admin-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.soybean</groupId>
+                <artifactId>soybean-admin-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

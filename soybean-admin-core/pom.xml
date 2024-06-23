@@ -8,12 +8,12 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>soybean-admin-common</artifactId>
+    <artifactId>soybean-admin-core</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.soybean</groupId>
+            <artifactId>soybean-admin-common</artifactId>
         </dependency>
     </dependencies>
 
