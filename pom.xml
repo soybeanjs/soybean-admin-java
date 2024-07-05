@@ -13,6 +13,7 @@
         <module>soybean-admin-start</module>
         <module>soybean-admin-core</module>
         <module>soybean-admin-portal</module>
+        <module>soybean-admin-infrastructure</module>
     </modules>
     <properties>
         <java.version>17</java.version>
@@ -84,6 +85,12 @@
                 <artifactId>soybean-admin-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.soybean</groupId>
+                <artifactId>soybean-admin-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
