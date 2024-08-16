@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>com.soybean</groupId>
-        <artifactId>soybean-admin-parent</artifactId>
+        <artifactId>soybean-admin-java</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -51,7 +51,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.soybean.start.Application</mainClass>
+                    <mainClass>com.soybean.Application</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>
