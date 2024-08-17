@@ -8,13 +8,23 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>soybean-admin-core</artifactId>
+    <artifactId>soybean-admin-domain</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.soybean</groupId>
             <artifactId>soybean-admin-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.mybatis-flex</groupId>
+            <artifactId>mybatis-flex-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mybatis-flex</groupId>
+            <artifactId>mybatis-flex-processor</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
 
