@@ -1,8 +1,8 @@
-package com.soybean.common;
+package com.soybean.infrastructure;
 
 import java.io.Serializable;
 
-import com.soybean.common.constants.enums.ResultCode;
+import com.soybean.infrastructure.constants.enums.ResultCode;
 import lombok.Data;
 
 /**

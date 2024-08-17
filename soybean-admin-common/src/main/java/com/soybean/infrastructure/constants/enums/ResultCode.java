@@ -1,4 +1,4 @@
-package com.soybean.common.constants.enums;
+package com.soybean.infrastructure.constants.enums;
 
 /**
  * @description:响应状态码
