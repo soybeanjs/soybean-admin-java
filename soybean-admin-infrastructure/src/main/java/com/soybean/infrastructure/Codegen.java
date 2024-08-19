@@ -108,10 +108,17 @@ public class Codegen {
         //设置controller
         globalConfig.getControllerConfig()
                 .setClassPrefix("Bus")
-                .setClassSuffix("Ctrl")
+                .setClassSuffix("Ctrl");
 
-//                .setSuperClass(BaseController.class)
-        ;
+        globalConfig.getEntityConfig()
+                .setClassSuffix("DO");
+
+        globalConfig.getMapperConfig()
+                .setClassSuffix("DAO");
+
+        globalConfig.getMapperXmlConfig()
+                .setFileSuffix("DAO");
+
 
         globalConfig.getTemplateConfig()
                 .setTemplate(new EnjoyTemplate())
