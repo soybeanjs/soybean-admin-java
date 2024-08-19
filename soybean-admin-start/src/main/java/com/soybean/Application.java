@@ -34,7 +34,7 @@ public class Application extends SpringBootServletInitializer {
                 "Application is running! Access URLs:\n\t" +
                 "Local: \t\thttp://localhost:" + port + "/\n\t" +
                 "External: \thttp://" + ip + ":" + port + "/\n\t" +
-                "Swagger文档: \thttp://" + ip + ":" + port + "/doc.htm\n" +
+                "Swagger文档: \thttp://" + ip + ":" + port + "/doc.html\n" +
                 "----------------------------------------------------------");
     }
 
