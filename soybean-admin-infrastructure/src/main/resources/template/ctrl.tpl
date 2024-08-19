@@ -49,7 +49,7 @@ import java.util.List;
 @Controller
 #end
 #if(withSwagger && swaggerVersion.getName() == "FOX")
-@Api("#(tableComment)接口")
+@Api(tags = "#(tableComment)接口")
 #end
 #if(withSwagger && swaggerVersion.getName() == "DOC")
 @Tag(name = "#(tableComment)接口")

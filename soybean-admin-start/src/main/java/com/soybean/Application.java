@@ -8,7 +8,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -16,8 +15,7 @@ import java.net.UnknownHostException;
 @SpringBootApplication
 @Slf4j
 @MapperScan(basePackages = "com.soybean.infrastructure.resources.mapper")
-@EnableSwagger2
-public class Application  extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
 
     @Override
@@ -34,9 +32,9 @@ public class Application  extends SpringBootServletInitializer {
 //        String path = env.getProperty("server.servlet.context-path");
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application is running! Access URLs:\n\t" +
-                "Local: \t\thttp://localhost:" + port  + "/\n\t" +
-                "External: \thttp://" + ip + ":" + port  + "/\n\t" +
-                "Swagger文档: \thttp://" + ip + ":" + port  + "/swagger-ui.html\n" +
+                "Local: \t\thttp://localhost:" + port + "/\n\t" +
+                "External: \thttp://" + ip + ":" + port + "/\n\t" +
+                "Swagger文档: \thttp://" + ip + ":" + port + "/doc.htm\n" +
                 "----------------------------------------------------------");
     }
 

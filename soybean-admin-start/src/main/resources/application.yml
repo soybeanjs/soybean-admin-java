@@ -22,7 +22,9 @@ spring:
     password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-# ??swagger???????????????SpringBoot
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+    # ??swagger???????????????SpringBoot
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
+knife4j:
+  enable: true
