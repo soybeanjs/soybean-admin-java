@@ -55,6 +55,15 @@ public class Codegen {
                 .setTablePrefix("bus_")
                 .setGenerateTable(tableNames);
 
+        globalConfig.getEntityConfig()
+                .setClassSuffix("DO");
+
+        globalConfig.getMapperConfig()
+                .setClassSuffix("DAO");
+
+        globalConfig.getMapperXmlConfig()
+                .setFileSuffix("DAO");
+
         //设置生成 entity 并启用 Lombok
         globalConfig.enableEntity()
                 .setWithLombok(true)
@@ -105,19 +114,13 @@ public class Codegen {
         globalConfig.disableMapperXml();
         globalConfig.disableService();
 
+        globalConfig.getEntityConfig()
+                .setClassSuffix("DO");
+
         //设置controller
         globalConfig.getControllerConfig()
                 .setClassPrefix("Bus")
                 .setClassSuffix("Ctrl");
-
-        globalConfig.getEntityConfig()
-                .setClassSuffix("DO");
-
-        globalConfig.getMapperConfig()
-                .setClassSuffix("DAO");
-
-        globalConfig.getMapperXmlConfig()
-                .setFileSuffix("DAO");
 
 
         globalConfig.getTemplateConfig()
