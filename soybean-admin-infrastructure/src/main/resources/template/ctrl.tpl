@@ -163,7 +163,7 @@ public class #(table.buildControllerClassName()) #if(controllerConfig.superClass
     @Operation(description="分页查询#(tableComment)")
     #end
     public Result<Page<#(entityClassName)>> page(#if(withSwagger && swaggerVersion.getName() == "FOX")@ApiParam("分页信息") #end #if(withSwagger && swaggerVersion.getName() == "DOC")@Parameter(description="分页信息")#end Page<#(entityClassName)> page) {
-    Page<#(entityClassName)> data = adminAccountService.page(page);
+    Page<#(entityClassName)> data = #(serviceVarName).page(page);
         return Result.success(data);
     }
 
