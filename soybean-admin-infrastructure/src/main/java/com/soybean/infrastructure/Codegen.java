@@ -13,6 +13,10 @@ public class Codegen {
     private static final String ctrlBusFileName = "soybean-admin-portal";
     private static final String ctrlBusUrl = "com.soybean.portal";
 
+    public static final String TABLE_PREFIX = "soybean";
+
+    private static final String[] tableNames = {"soybean_users"};
+
     public static void main(String[] args) {
         //配置数据源
         DruidDataSource dataSource = new DruidDataSource();
@@ -20,8 +24,6 @@ public class Codegen {
         dataSource.setUsername("root");
         dataSource.setPassword("rootroot");
 
-
-        String[] tableNames = {"bus_admin_account", ""};
         GlobalConfig globalConfig = createGlobalConfigBaseInfo(tableNames);
         Generator generator = new Generator(dataSource, globalConfig);
 
@@ -41,34 +43,19 @@ public class Codegen {
 
         globalConfig.setSourceDir(System.getProperty("user.dir") + "/" + baseInfoFileName + "/" + "/src/main/java");
         //设置根包
-        globalConfig.getPackageConfig()
-                .setBasePackage(baseInfoUrl)
-                .setEntityPackage(baseInfoUrl + ".resources.entity")
-                .setMapperPackage(baseInfoUrl + ".resources.mapper")
-                .setServicePackage(baseInfoUrl + ".service")
-                .setServiceImplPackage(baseInfoUrl + ".service.impl")
-                .setMapperXmlPath(System.getProperty("user.dir").concat("/" + baseInfoFileName).concat("/src/main/resources/mapper"))
-        ;
+        globalConfig.getPackageConfig().setBasePackage(baseInfoUrl).setEntityPackage(baseInfoUrl + ".resources.entity").setMapperPackage(baseInfoUrl + ".resources.mapper").setServicePackage(baseInfoUrl + ".service").setServiceImplPackage(baseInfoUrl + ".service.impl").setMapperXmlPath(System.getProperty("user.dir").concat("/" + baseInfoFileName).concat("/src/main/resources/mapper"));
 
         //设置表前缀和只生成哪些表，setGenerateTable 未配置时，生成所有表
-        globalConfig.getStrategyConfig()
-                .setTablePrefix("bus_")
-                .setGenerateTable(tableNames);
+        globalConfig.getStrategyConfig().setTablePrefix(TABLE_PREFIX).setGenerateTable(tableNames);
 
-        globalConfig.getEntityConfig()
-                .setClassSuffix("DO");
+        globalConfig.getEntityConfig().setClassSuffix("DO");
 
-        globalConfig.getMapperConfig()
-                .setClassSuffix("DAO");
+        globalConfig.getMapperConfig().setClassSuffix("DAO");
 
-        globalConfig.getMapperXmlConfig()
-                .setFileSuffix("DAO");
+        globalConfig.getMapperXmlConfig().setFileSuffix("DAO");
 
         //设置生成 entity 并启用 Lombok
-        globalConfig.enableEntity()
-                .setWithLombok(true)
-                .setWithSwagger(true)
-                .setJdkVersion(17);
+        globalConfig.enableEntity().setWithLombok(true).setWithSwagger(true).setJdkVersion(17);
 
         //设置生成 mapper
         globalConfig.enableMapper();
@@ -87,24 +74,15 @@ public class Codegen {
 
         globalConfig.setSourceDir(System.getProperty("user.dir") + "/" + ctrlBusFileName + "/" + "/src/main/java");
         //设置根包
-        globalConfig.getPackageConfig()
-                .setBasePackage(ctrlBusUrl);
+        globalConfig.getPackageConfig().setBasePackage(ctrlBusUrl);
 
-        globalConfig.getPackageConfig()
-                .setEntityPackage(baseInfoUrl + ".resources.entity")
-                .setServicePackage(baseInfoUrl + ".service")
-                .setControllerPackage(ctrlBusUrl + ".ctrl");
+        globalConfig.getPackageConfig().setEntityPackage(baseInfoUrl + ".resources.entity").setServicePackage(baseInfoUrl + ".service").setControllerPackage(ctrlBusUrl + ".ctrl");
 
         //设置表前缀和只生成哪些表，setGenerateTable 未配置时，生成所有表
-        globalConfig.getStrategyConfig()
-                .setTablePrefix("bus_")
-                .setGenerateTable(tables);
+        globalConfig.getStrategyConfig().setTablePrefix(TABLE_PREFIX).setGenerateTable(tables);
 
         //设置生成 entity 并启用 Lombok
-        globalConfig.enableEntity()
-                .setWithLombok(true)
-                .setWithSwagger(true)
-                .setJdkVersion(17);
+        globalConfig.enableEntity().setWithLombok(true).setWithSwagger(true).setJdkVersion(17);
 
         //设置生成 mapper
         globalConfig.enableController();
@@ -114,18 +92,13 @@ public class Codegen {
         globalConfig.disableMapperXml();
         globalConfig.disableService();
 
-        globalConfig.getEntityConfig()
-                .setClassSuffix("DO");
+        globalConfig.getEntityConfig().setClassSuffix("DO");
 
         //设置controller
-        globalConfig.getControllerConfig()
-                .setClassPrefix("Bus")
-                .setClassSuffix("Ctrl");
+        globalConfig.getControllerConfig().setClassPrefix("Bus").setClassSuffix("Ctrl");
 
 
-        globalConfig.getTemplateConfig()
-                .setTemplate(new EnjoyTemplate())
-                .setController("/template/ctrl.tpl");
+        globalConfig.getTemplateConfig().setTemplate(new EnjoyTemplate()).setController("/template/ctrl.tpl");
         return globalConfig;
     }
 }
