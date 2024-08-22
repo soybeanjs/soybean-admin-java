@@ -1,27 +1,24 @@
 package com.soybean.infrastructure.service.impl;
 
 import com.mybatisflex.spring.service.impl.ServiceImpl;
-import com.soybean.domain.model.UsersDTO;
-import com.soybean.domain.service.UsersService;
 import com.soybean.infrastructure.resources.entity.UsersDO;
 import com.soybean.infrastructure.resources.mapper.UsersDAO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.soybean.infrastructure.service.UsersService;
 import org.springframework.stereotype.Service;
 
 /**
  * 用户信息表 服务层实现。
  *
+ * todo @山月这个实现还没想好要不要下掉，先留着用吧，毕竟用着方便
+ *
  * @author coding
- * @since 2024-08-20
+ * @since 2024-08-23
  */
 @Service
 public class UsersServiceImpl extends ServiceImpl<UsersDAO, UsersDO> implements UsersService {
 
-    @Autowired
-    private UsersDAO usersDAO;
-
     @Override
-    public UsersDTO login(UsersDTO dto) {
-        return null;
+    public void login(Object o) {
+
     }
 }
