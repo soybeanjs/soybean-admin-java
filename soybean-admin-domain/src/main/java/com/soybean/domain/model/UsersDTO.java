@@ -32,7 +32,12 @@ public class UsersDTO {
         /**
          * 用户账号
          */
-        private String userName;
+        private String username;
+
+        /**
+         * 密码
+         */
+        private String password;
 
         /**
          * 用户昵称

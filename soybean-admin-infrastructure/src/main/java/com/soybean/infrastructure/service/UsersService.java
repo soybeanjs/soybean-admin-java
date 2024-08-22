@@ -1,6 +1,7 @@
 package com.soybean.infrastructure.service;
 
 import com.mybatisflex.core.service.IService;
+import com.soybean.domain.model.UsersDTO;
 import com.soybean.infrastructure.resources.entity.UsersDO;
 
 /**
@@ -11,5 +12,5 @@ import com.soybean.infrastructure.resources.entity.UsersDO;
  */
 public interface UsersService extends IService<UsersDO> {
 
-    void login(Object o);
+    UsersDTO login(UsersDTO usersDTO);
 }

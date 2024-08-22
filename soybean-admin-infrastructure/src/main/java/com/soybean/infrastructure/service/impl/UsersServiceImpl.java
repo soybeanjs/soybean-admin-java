@@ -1,10 +1,15 @@
 package com.soybean.infrastructure.service.impl;
 
+import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.spring.service.impl.ServiceImpl;
+import com.soybean.domain.model.UsersDTO;
+import com.soybean.infrastructure.factory.mapper.UsersMapperFactory;
 import com.soybean.infrastructure.resources.entity.UsersDO;
 import com.soybean.infrastructure.resources.mapper.UsersDAO;
 import com.soybean.infrastructure.service.UsersService;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * 用户信息表 服务层实现。
@@ -17,8 +22,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsersServiceImpl extends ServiceImpl<UsersDAO, UsersDO> implements UsersService {
 
-    @Override
-    public void login(Object o) {
 
+    @Override
+    public UsersDTO login(UsersDTO usersDTO) {
+        UsersDO usersDO = this.getOne(new QueryWrapper().eq("username", usersDTO.getUsersBasic().getUsername()));
+        return Optional.of(usersDO)
+                .map(UsersMapperFactory.MAPPER::map)
+                .orElse(null);
     }
 }

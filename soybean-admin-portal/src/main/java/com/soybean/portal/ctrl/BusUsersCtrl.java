@@ -1,11 +1,14 @@
 package com.soybean.portal.ctrl;
 
+import cn.dev33.satoken.config.SaTokenConfig;
+import cn.dev33.satoken.stp.StpUtil;
 import com.mybatisflex.core.paginate.Page;
 import com.soybean.domain.model.UsersDTO;
 import com.soybean.infrastructure.Result;
 import com.soybean.infrastructure.factory.mapper.UsersMapperFactory;
 import com.soybean.infrastructure.resources.entity.UsersDO;
 import com.soybean.infrastructure.service.UsersService;
+import com.soybean.portal.request.users.UsersLoginRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 用户信息表 控制层。
@@ -33,8 +37,22 @@ public class BusUsersCtrl {
 
 
     @PostMapping("login")
-    public Result login(@RequestBody @ApiParam("用户信息表") UsersDO usersDO) {
-        usersService.login(null);
+    public Result login(@RequestBody @ApiParam("用户信息表") UsersLoginRequest request) {
+        UsersDTO usersDTO = new UsersDTO();
+        UsersDTO.UsersBasic usersBasic = new UsersDTO.UsersBasic();
+        usersBasic.setUsername(request.getUsername());
+        usersBasic.setPassword(request.getPassword());
+        usersDTO.setUsersBasic(usersBasic);
+        UsersDTO loginUsers = usersService.login(usersDTO);
+        if (Optional.ofNullable(loginUsers).isEmpty()) {
+            return Result.failed("当前用户不存在");
+        }
+        String password = loginUsers.getUsersBasic().getPassword();
+        if (!password.equals(request.getPassword())) {
+            return Result.failed("密码错误");
+        }
+        //todo 登录处理satoken
+//        StpUtil.login(usersDTO.getUserId()).;
         return Result.success();
     }
 
