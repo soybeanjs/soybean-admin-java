@@ -1,5 +1,7 @@
 package com.soybean.infrastructure.constants.enums;
 
+import lombok.Getter;
+
 /**
  * @description:响应状态码
  * @author：美式续命
@@ -7,6 +9,7 @@ package com.soybean.infrastructure.constants.enums;
  * @Copyright：
  */
 
+@Getter
 public enum ResultCode {
     /**
      * 参数校验不通过
@@ -96,11 +99,4 @@ public enum ResultCode {
         this.message = msg;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }
