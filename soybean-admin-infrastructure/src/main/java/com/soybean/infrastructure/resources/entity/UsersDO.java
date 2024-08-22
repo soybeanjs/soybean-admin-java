@@ -20,12 +20,9 @@ import java.io.Serial;
  * @author coding
  * @since 2024-08-20
  */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @ApiModel("用户信息表")
 @Table(value = "soybean_users")
+@Data
 public class UsersDO implements Serializable {
 
     @Serial
@@ -36,7 +33,7 @@ public class UsersDO implements Serializable {
      */
     @Id(keyType = KeyType.Auto)
     @ApiModelProperty("用户ID")
-    private Long userId;
+    private Long id;
 
     /**
      * 部门ID

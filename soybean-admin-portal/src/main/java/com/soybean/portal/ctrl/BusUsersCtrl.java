@@ -1,22 +1,18 @@
 package com.soybean.portal.ctrl;
 
 import com.mybatisflex.core.paginate.Page;
-import com.soybean.domain.service.UsersService;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.soybean.domain.model.UsersDTO;
 import com.soybean.infrastructure.Result;
+import com.soybean.infrastructure.factory.mapper.UsersMapperFactory;
 import com.soybean.infrastructure.resources.entity.UsersDO;
-import org.springframework.web.bind.annotation.RestController;
+import com.soybean.infrastructure.service.UsersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -39,7 +35,7 @@ public class BusUsersCtrl {
     @PostMapping("login")
     public Result login(@RequestBody @ApiParam("用户信息表") UsersDO usersDO) {
         usersService.login(null);
-         return Result.success();
+        return Result.success();
     }
 
     /**
@@ -51,7 +47,7 @@ public class BusUsersCtrl {
     @PostMapping("save")
     @ApiOperation("保存用户信息表")
     public Result<Boolean> save(@RequestBody @ApiParam("用户信息表") UsersDO usersDO) {
-        boolean save = usersService.save(usersDO);
+        boolean save = usersService.save(null);
         return Result.success(save);
     }
 
@@ -77,7 +73,7 @@ public class BusUsersCtrl {
     @PutMapping("update")
     @ApiOperation("根据主键更新用户信息表")
     public Result<Boolean> update(@RequestBody @ApiParam("用户信息表主键") UsersDO usersDO) {
-        usersService.updateById(usersDO);
+        usersService.updateById(null);
         return Result.success();
     }
 
@@ -90,7 +86,7 @@ public class BusUsersCtrl {
     @ApiOperation("查询所有用户信息表")
     public Result<List<UsersDO>> list() {
         List<UsersDO> list = usersService.list();
-         return Result.success(list);
+        return Result.success(list);
     }
 
     /**
@@ -101,8 +97,8 @@ public class BusUsersCtrl {
      */
     @GetMapping("getInfo/{id}")
     @ApiOperation("根据主键获取用户信息表")
-    public Result<UsersDO> getInfo(@PathVariable @ApiParam("用户信息表主键") Serializable id) {
-        UsersDO detail=usersService.getById(id);
+    public Result<UsersDTO> getInfo(@PathVariable @ApiParam("用户信息表主键") Serializable id) {
+        UsersDO detail = usersService.getById(id);
         return Result.success(detail);
     }
 
@@ -115,7 +111,8 @@ public class BusUsersCtrl {
     @GetMapping("page")
     @ApiOperation("分页查询用户信息表")
     public Result<Page<UsersDO>> page(@ApiParam("分页信息") Page<UsersDO> page) {
-    Page<UsersDO> data = usersService.page(page);
+        Page<UsersDO> data = usersService.page(page);
+        UsersMapperFactory.MAPPER.map(new UsersDO());
         return Result.success(data);
     }
 
