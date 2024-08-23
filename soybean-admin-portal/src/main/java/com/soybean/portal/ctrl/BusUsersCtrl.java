@@ -37,6 +37,7 @@ public class BusUsersCtrl {
     private UsersService usersService;
 
 
+    @ApiOperation("登录")
     @PostMapping("login")
     public Result login(@RequestBody @ApiParam("用户信息表") UsersLoginRequest request) {
         UsersDTO usersDTO = new UsersDTO();
@@ -66,7 +67,7 @@ public class BusUsersCtrl {
     @PostMapping("save")
     @ApiOperation("保存用户信息表")
     public Result<Boolean> save(@RequestBody @ApiParam("用户信息表") UsersDO usersDO) {
-        boolean save = usersService.save(null);
+        boolean save = usersService.save(usersDO);
         return Result.success(save);
     }
 
