@@ -7,6 +7,7 @@ import com.soybean.infrastructure.factory.mapper.UsersMapperFactory;
 import com.soybean.infrastructure.resources.entity.UsersDO;
 import com.soybean.infrastructure.resources.mapper.UsersDAO;
 import com.soybean.infrastructure.service.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,9 +24,13 @@ import java.util.Optional;
 public class UsersServiceImpl extends ServiceImpl<UsersDAO, UsersDO> implements UsersService {
 
 
+    @Autowired
+    private UsersDAO usersDAO;
+
+
     @Override
     public UsersDTO login(UsersDTO usersDTO) {
-        UsersDO usersDO = this.getOne(new QueryWrapper().eq("username", usersDTO.getUsersBasic().getUsername()));
+        UsersDO usersDO = usersDAO.selectOneByQuery(new QueryWrapper().eq("username", usersDTO.getUsersBasic().getUsername()));
         return Optional.of(usersDO)
                 .map(UsersMapperFactory.MAPPER::map)
                 .orElse(null);

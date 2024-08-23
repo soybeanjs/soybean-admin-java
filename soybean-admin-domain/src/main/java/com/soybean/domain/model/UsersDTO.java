@@ -47,7 +47,7 @@ public class UsersDTO {
         /**
          * 用户类型（00系统用户）
          */
-        private UsersType userType;
+        private UsersType usersType;
 
         /**
          * 用户邮箱
@@ -128,6 +128,24 @@ public class UsersDTO {
             this.desc = desc;
         }
 
+        public static UsersState of(Integer state) {
+            for (UsersState value : UsersState.values()) {
+                if (value.getState().equals(state)) {
+                    return value;
+                }
+            }
+            return null;
+        }
+
+        public static Integer of(UsersState state) {
+            for (UsersState value : UsersState.values()) {
+                if (value.equals(state)) {
+                    return value.getState();
+                }
+            }
+            return null;
+        }
+
     }
 
     @Getter
@@ -145,6 +163,24 @@ public class UsersDTO {
             this.state = state;
             this.desc = desc;
         }
+
+        public static Integer of(Gender gender) {
+            for (Gender value : values()) {
+                if (value.equals(gender)) {
+                    return value.getState();
+                }
+            }
+            return null;
+        }
+
+        public static Gender of(Integer gender) {
+            for (Gender value : values()) {
+                if (value.getState().equals(gender)) {
+                    return value;
+                }
+            }
+            return null;
+        }
     }
 
     @Getter
@@ -161,6 +197,24 @@ public class UsersDTO {
         UsersType(Integer type, String desc) {
             this.type = type;
             this.desc = desc;
+        }
+
+        public static Integer of(UsersType usersType) {
+            for (UsersType value : values()) {
+                if (value.equals(usersType)) {
+                    return value.getType();
+                }
+            }
+            return null;
+        }
+
+        public static UsersType of(Integer usersType) {
+            for (UsersType value : values()) {
+                if (value.getType().equals(usersType)) {
+                    return value;
+                }
+            }
+            return null;
         }
     }
 

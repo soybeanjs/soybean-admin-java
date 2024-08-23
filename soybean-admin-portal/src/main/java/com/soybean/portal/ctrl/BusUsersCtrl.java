@@ -1,6 +1,7 @@
 package com.soybean.portal.ctrl;
 
 import cn.dev33.satoken.config.SaTokenConfig;
+import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.mybatisflex.core.paginate.Page;
 import com.soybean.domain.model.UsersDTO;
@@ -51,9 +52,9 @@ public class BusUsersCtrl {
         if (!password.equals(request.getPassword())) {
             return Result.failed("密码错误");
         }
-        //todo 登录处理satoken
-//        StpUtil.login(usersDTO.getUserId()).;
-        return Result.success();
+        StpUtil.login(loginUsers.getUserId());
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+        return Result.success(tokenInfo.getTokenValue());
     }
 
     /**

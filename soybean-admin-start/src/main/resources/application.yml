@@ -17,12 +17,12 @@ mybatis-flex:
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3307/pwa?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/pwa?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
     username: root
     password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 
-    # ??swagger???????????????SpringBoot
     mvc:
       pathmatch:
         matching-strategy: ant_path_matcher

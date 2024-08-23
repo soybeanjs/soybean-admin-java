@@ -3,16 +3,13 @@ package com.soybean.infrastructure.resources.entity;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import java.io.Serial;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * 用户信息表 实体类。
@@ -45,7 +42,7 @@ public class UsersDO implements Serializable {
      * 用户账号
      */
     @ApiModelProperty("用户账号")
-    private String userName;
+    private String username;
 
     /**
      * 用户昵称
@@ -57,7 +54,7 @@ public class UsersDO implements Serializable {
      * 用户类型（00系统用户）
      */
     @ApiModelProperty("用户类型（00系统用户）")
-    private String userType;
+    private Integer userType;
 
     /**
      * 用户邮箱
@@ -75,7 +72,7 @@ public class UsersDO implements Serializable {
      * 用户性别（0男 1女 2未知）
      */
     @ApiModelProperty("用户性别（0男 1女 2未知）")
-    private String sex;
+    private Integer sex;
 
     /**
      * 头像地址
@@ -93,13 +90,13 @@ public class UsersDO implements Serializable {
      * 帐号状态（0正常 1停用）
      */
     @ApiModelProperty("帐号状态（0正常 1停用）")
-    private String status;
+    private Integer status;
 
     /**
      * 删除标志（0代表存在 2代表删除）
      */
     @ApiModelProperty("删除标志（0代表存在 2代表删除）")
-    private String delFlag;
+    private Integer delFlag;
 
     /**
      * 最后登录IP
