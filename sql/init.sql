@@ -44,8 +44,14 @@ CREATE TABLE `soybean_role`
 
 CREATE TABLE `soybean_user_role`
 (
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  `user_id`           bigint(20)       NOT NULL COMMENT '用户ID',
+  `role_id`           bigint(20)       NOT NULL COMMENT '角色ID',
+  `del_flag`          char(1)          DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `gmt_create`        bigint(20)       DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified`      bigint(20)       DEFAULT NULL COMMENT '更新时间',
+  `create_by`         bigint(20)       DEFAULT NULL COMMENT '创建者',
+  `update_by`         bigint(20)       DEFAULT NULL COMMENT '更新者',
+  `extra`             longtext         COLLATE utf8_bin COMMENT '备注',
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='用户和角色关联表';
 
@@ -75,7 +81,13 @@ CREATE TABLE `soybean_menu`
 
 CREATE TABLE `soybean_role_menu`
 (
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
-  `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
+  `role_id`           bigint(20)       NOT NULL COMMENT '角色ID',
+  `menu_id`           bigint(20)       NOT NULL COMMENT '菜单ID',
+  `del_flag`          char(1)          DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `gmt_create`        bigint(20)       DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified`      bigint(20)       DEFAULT NULL COMMENT '更新时间',
+  `create_by`         bigint(20)       DEFAULT NULL COMMENT '创建者',
+  `update_by`         bigint(20)       DEFAULT NULL COMMENT '更新者',
+  `extra`             longtext         COLLATE utf8_bin COMMENT '备注',
   PRIMARY KEY (`role_id`,`menu_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='角色和菜单关联表';
