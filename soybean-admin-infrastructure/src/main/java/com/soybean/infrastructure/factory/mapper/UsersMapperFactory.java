@@ -8,6 +8,10 @@ import org.mapstruct.Mappings;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Objects;
+
 @Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface UsersMapperFactory {
 
@@ -24,7 +28,12 @@ public interface UsersMapperFactory {
             @Mapping(target = "usersBasic.sex", expression = "java(mapToSex(usersDO))"),
             @Mapping(source = "avatar", target = "usersBasic.avatar"),
             @Mapping(target = "usersBasic.usersState", expression = "java(mapToUsersState(usersDO))"),
-            @Mapping(source = "delFlag", target = "usersBasic.delFlag")
+            @Mapping(source = "delFlag", target = "usersBasic.delFlag"),
+            @Mapping(source = "loginIp", target = "usersLoginInfo.loginIp"),
+            @Mapping(source = "loginDate", target = "usersLoginInfo.loginDate"),
+            @Mapping(source = "gmtCreate", target = "usersExtra.gmtCreate"),
+            @Mapping(source = "gmtModified", target = "usersExtra.gmtModified"),
+            @Mapping(source = "extra", target = "usersExtra.extra")
     })
     UsersDTO map(UsersDO usersDO);
 
@@ -38,6 +47,10 @@ public interface UsersMapperFactory {
 
     default UsersDTO.UsersType mapToUserType(UsersDO usersDO) {
         return UsersDTO.UsersType.of(usersDO.getUserType());
+    }
+
+    default Long mapLoginDate(LocalDateTime loginDate) {
+        return Objects.isNull(loginDate) ? null : loginDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
 }

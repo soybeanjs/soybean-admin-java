@@ -13,9 +13,9 @@ import com.soybean.infrastructure.Result;
 import com.soybean.infrastructure.resources.entity.MenuDO;
 import com.soybean.infrastructure.service.MenuService;
 import org.springframework.web.bind.annotation.RestController;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,7 +26,7 @@ import java.util.List;
  * @since 2024-09-15
  */
 @RestController
-@Api(tags = "菜单权限表接口")
+@Tag(name = "菜单权限表接口")
 @RequestMapping("/sys/menu/")
 public class BusMenuCtrl {
 
@@ -40,8 +40,8 @@ public class BusMenuCtrl {
      * @return {@code true} 添加成功，{@code false} 添加失败
      */
     @PostMapping("save")
-    @ApiOperation("保存")
-    public Result<Boolean> save(@RequestBody @ApiParam("") MenuDO menuDO) {
+    @Operation(summary = "保存")
+    public Result<Boolean> save(@RequestBody @Parameter(description = "") MenuDO menuDO) {
         boolean save = menuService.save(menuDO);
         return Result.success(save);
     }
@@ -53,8 +53,8 @@ public class BusMenuCtrl {
      * @return {@code true} 删除成功，{@code false} 删除失败
      */
     @DeleteMapping("remove/{id}")
-    @ApiOperation("根据主键")
-    public Result<Boolean> remove(@PathVariable @ApiParam("主键") Serializable id) {
+    @Operation(summary = "根据主键")
+    public Result<Boolean> remove(@PathVariable @Parameter(description = "主键") Serializable id) {
         boolean remove = menuService.removeById(id);
         return Result.success(remove);
     }
@@ -66,8 +66,8 @@ public class BusMenuCtrl {
      * @return {@code true} 更新成功，{@code false} 更新失败
      */
     @PutMapping("update")
-    @ApiOperation("根据主键更新")
-    public Result<Boolean> update(@RequestBody @ApiParam("主键") MenuDO menuDO) {
+    @Operation(summary = "根据主键更新")
+    public Result<Boolean> update(@RequestBody @Parameter(description = "主键") MenuDO menuDO) {
         menuService.updateById(menuDO);
         return Result.success();
     }
@@ -78,7 +78,7 @@ public class BusMenuCtrl {
      * @return 所有数据
      */
     @GetMapping("list")
-    @ApiOperation("查询所有")
+    @Operation(summary = "查询所有")
     public Result<List<MenuDO>> list() {
         List<MenuDO> list = menuService.list();
          return Result.success(list);
@@ -91,8 +91,8 @@ public class BusMenuCtrl {
      * @return 详情
      */
     @GetMapping("getInfo/{id}")
-    @ApiOperation("根据主键获取")
-    public Result<MenuDO> getInfo(@PathVariable @ApiParam("主键") Serializable id) {
+    @Operation(summary = "根据主键获取")
+    public Result<MenuDO> getInfo(@PathVariable @Parameter(description = "主键") Serializable id) {
         MenuDO detail=menuService.getById(id);
         return Result.success(detail);
     }
@@ -104,8 +104,8 @@ public class BusMenuCtrl {
      * @return 分页对象
      */
     @GetMapping("page")
-    @ApiOperation("分页查询")
-    public Result<Page<MenuDO>> page(@ApiParam("分页信息") Page<MenuDO> page) {
+    @Operation(summary = "分页查询")
+    public Result<Page<MenuDO>> page(@Parameter(description = "分页信息") Page<MenuDO> page) {
     Page<MenuDO> data = menuService.page(page);
         return Result.success(data);
     }

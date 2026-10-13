@@ -10,7 +10,7 @@ import com.soybean.infrastructure.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.Objects;
 
 /**
  * 用户信息表 服务层实现。
@@ -31,8 +31,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersDAO, UsersDO> implements 
     @Override
     public UsersDTO login(UsersDTO usersDTO) {
         UsersDO usersDO = usersDAO.selectOneByQuery(new QueryWrapper().eq("username", usersDTO.getUsersBasic().getUsername()));
-        return Optional.of(usersDO)
-                .map(UsersMapperFactory.MAPPER::map)
-                .orElse(null);
+        if (Objects.isNull(usersDO)) {
+            return null;
+        }
+        return UsersMapperFactory.MAPPER.map(usersDO);
     }
 }

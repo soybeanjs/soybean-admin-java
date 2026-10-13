@@ -13,9 +13,9 @@ import com.soybean.infrastructure.Result;
 import com.soybean.infrastructure.resources.entity.UserRoleDO;
 import com.soybean.infrastructure.service.UserRoleService;
 import org.springframework.web.bind.annotation.RestController;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,7 +26,7 @@ import java.util.List;
  * @since 2024-09-15
  */
 @RestController
-@Api(tags = "用户和角色关联表接口")
+@Tag(name = "用户和角色关联表接口")
 @RequestMapping("/sys/userRole/")
 public class BusUserRoleCtrl {
 
@@ -40,8 +40,8 @@ public class BusUserRoleCtrl {
      * @return {@code true} 添加成功，{@code false} 添加失败
      */
     @PostMapping("save")
-    @ApiOperation("保存")
-    public Result<Boolean> save(@RequestBody @ApiParam("") UserRoleDO userRoleDO) {
+    @Operation(summary = "保存")
+    public Result<Boolean> save(@RequestBody @Parameter(description = "") UserRoleDO userRoleDO) {
         boolean save = userRoleService.save(userRoleDO);
         return Result.success(save);
     }
@@ -53,8 +53,8 @@ public class BusUserRoleCtrl {
      * @return {@code true} 删除成功，{@code false} 删除失败
      */
     @DeleteMapping("remove/{id}")
-    @ApiOperation("根据主键")
-    public Result<Boolean> remove(@PathVariable @ApiParam("主键") Serializable id) {
+    @Operation(summary = "根据主键")
+    public Result<Boolean> remove(@PathVariable @Parameter(description = "主键") Serializable id) {
         boolean remove = userRoleService.removeById(id);
         return Result.success(remove);
     }
@@ -66,8 +66,8 @@ public class BusUserRoleCtrl {
      * @return {@code true} 更新成功，{@code false} 更新失败
      */
     @PutMapping("update")
-    @ApiOperation("根据主键更新")
-    public Result<Boolean> update(@RequestBody @ApiParam("主键") UserRoleDO userRoleDO) {
+    @Operation(summary = "根据主键更新")
+    public Result<Boolean> update(@RequestBody @Parameter(description = "主键") UserRoleDO userRoleDO) {
         userRoleService.updateById(userRoleDO);
         return Result.success();
     }
@@ -78,7 +78,7 @@ public class BusUserRoleCtrl {
      * @return 所有数据
      */
     @GetMapping("list")
-    @ApiOperation("查询所有")
+    @Operation(summary = "查询所有")
     public Result<List<UserRoleDO>> list() {
         List<UserRoleDO> list = userRoleService.list();
          return Result.success(list);
@@ -91,8 +91,8 @@ public class BusUserRoleCtrl {
      * @return 详情
      */
     @GetMapping("getInfo/{id}")
-    @ApiOperation("根据主键获取")
-    public Result<UserRoleDO> getInfo(@PathVariable @ApiParam("主键") Serializable id) {
+    @Operation(summary = "根据主键获取")
+    public Result<UserRoleDO> getInfo(@PathVariable @Parameter(description = "主键") Serializable id) {
         UserRoleDO detail=userRoleService.getById(id);
         return Result.success(detail);
     }
@@ -104,8 +104,8 @@ public class BusUserRoleCtrl {
      * @return 分页对象
      */
     @GetMapping("page")
-    @ApiOperation("分页查询")
-    public Result<Page<UserRoleDO>> page(@ApiParam("分页信息") Page<UserRoleDO> page) {
+    @Operation(summary = "分页查询")
+    public Result<Page<UserRoleDO>> page(@Parameter(description = "分页信息") Page<UserRoleDO> page) {
     Page<UserRoleDO> data = userRoleService.page(page);
         return Result.success(data);
     }
