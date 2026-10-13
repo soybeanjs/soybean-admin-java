@@ -17,12 +17,19 @@ public class Codegen {
 
     private static final String[] tableNames = {"soybean_users"};
 
+    private static final String DB_URL = System.getenv().getOrDefault("DB_URL",
+            "jdbc:mysql://127.0.0.1:3306/pwa?characterEncoding=utf-8");
+
+    private static final String DB_USERNAME = System.getenv().getOrDefault("DB_USERNAME", "root");
+
+    private static final String DB_PASSWORD = System.getenv().getOrDefault("DB_PASSWORD", "");
+
     public static void main(String[] args) {
-        //配置数据源
+        //配置数据源，数据库账号密码通过环境变量 DB_URL / DB_USERNAME / DB_PASSWORD 注入，避免硬编码
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/pwa?characterEncoding=utf-8");
-        dataSource.setUsername("root");
-        dataSource.setPassword("rootroot");
+        dataSource.setUrl(DB_URL);
+        dataSource.setUsername(DB_USERNAME);
+        dataSource.setPassword(DB_PASSWORD);
 
         GlobalConfig globalConfig = createGlobalConfigBaseInfo(tableNames);
         Generator generator = new Generator(dataSource, globalConfig);

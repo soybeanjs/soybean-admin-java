@@ -1,20 +1,28 @@
 package com.soybean.portal.request.users;
 
 import com.soybean.portal.request.base.BaseRequest;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serial;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class UsersLoginRequest extends BaseRequest {
 
-    @ApiModelProperty(value = "用户名")
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @Schema(description = "用户名")
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
+    @NotBlank(message = "密码不能为空")
     private String password;
 
-    @ApiModelProperty(value = "验证码")
+    @Schema(description = "验证码")
     private String captcha;
 }

@@ -1,13 +1,24 @@
 sa-token:
-  active-timeout: -1
-  is-concurrent: true
-  is-log: true
-  is-share: true
-  timeout: 2592000
-  token-name: soybean
-  token-prefix: Bearer
+  # token 风格，取值参考 https://sa-token.cc/doc.html#/up/token-style
   token-style: random-64
-
+  # token 名称（同时也是 cookie 名称）
+  token-name: soybean
+  # token 有效期（单位：秒）默认 30 天，-1 代表永不过期
+  timeout: 2592000
+  # token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认 -1 代表不限制
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录 （为 true 时允许一起登录, 为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token, 为 false 时每次登录新建一个 token）
+  is-share: true
+  # 是否输出操作日志
+  is-log: true
+  # 是否从 cookie 中读取 token
+  is-read-cookie: false
+  # 是否从请求体里读取 token
+  is-read-body: false
+  # token 前缀
+  token-prefix: Bearer
 
 server:
   port: 8090
@@ -17,14 +28,22 @@ mybatis-flex:
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/pwa?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
-    username: root
-    password: rootroot
+    # 本地开发默认连接，生产环境请通过环境变量覆盖 DB_URL / DB_USERNAME / DB_PASSWORD
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/pwa?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:rootroot}
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
-    mvc:
-      pathmatch:
-        matching-strategy: ant_path_matcher
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# Knife4j 文档配置，生产环境请通过 KNIFE4J_ENABLE=false 关闭
 knife4j:
-  enable: true
+  enable: ${KNIFE4J_ENABLE:true}
+
+# 文档地址：/doc.html
+springdoc:
+  api-docs:
+    enabled: ${KNIFE4J_ENABLE:true}

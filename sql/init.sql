@@ -91,3 +91,8 @@ CREATE TABLE `soybean_role_menu`
   `extra`             longtext         COLLATE utf8_bin COMMENT '备注',
   PRIMARY KEY (`role_id`,`menu_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='角色和菜单关联表';
+
+-- 初始管理员账号，默认密码 admin123（BCrypt 加密后存储）
+-- 请在生产环境首次登录后立即修改密码
+INSERT INTO `soybean_users` (`username`, `nick_name`, `user_type`, `email`, `phone_number`, `sex`, `password`, `status`, `del_flag`, `login_date`, `gmt_create`, `gmt_modified`, `extra`)
+VALUES ('admin', '管理员', '00', '', '', '0', '$2a$10$eozjZaSCjxdrMEp1iWL4zOCTnA7bf4G9m3CGNTDc/aRTrC2vi3NRe', '0', '0', NOW(), UNIX_TIMESTAMP() * 1000, UNIX_TIMESTAMP() * 1000, '{"role":"admin"}');
